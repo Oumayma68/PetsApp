@@ -1,0 +1,50 @@
+nav{
+	min-height: 8rem ;
+	background-color: white !important ;
+	border-bottom: 0.2rem solid #94c13d;
+}
+.nav-item{
+	& a{
+		text-decoration: none;
+		font-size: 1.7rem;
+		color: #262626;
+		line-height: 2rem;
+		font-weight: 600;
+		
+	}
+}
+.navbar-collapse{
+	justify-content: left;
+}
+.nav-item{
+	margin-left: 3rem;
+	margin-right: 3rem;
+	& a:hover{
+		color: #94c13d;
+	
+	}
+}
+.navbar-brand{
+	font-family: 'Satisfy', cursive;
+	color: #94c13d;
+	font-size: 3.2rem;
+	
+		font-weight: bold;
+}
+.dropdown-menu{
+	background-color: #94c13d;
+	& a{
+	font-size: 1.7rem;
+    color: white;
+    line-height: 2rem;
+	font-weight: 600;
+&.register{
+	
+}}
+}
+.image{
+	margin-left: 3rem
+}
+i{
+	font-size: 2rem;
+}

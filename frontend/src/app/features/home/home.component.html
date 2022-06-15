@@ -1,0 +1,46 @@
+<!--------------------main slider-------------------------->
+<app-main-slider *ngIf="images" >
+        <ngb-carousel  >
+                <ng-template ngbSlide *ngFor= "let img of images" class="carousel-zoom">
+                  <img [src]="img" class="d-block w-100  " width="1920px" height="600px" alt="pet" [ngStyle]="{'animation': 'zoom 20s'}">
+
+                </ng-template>
+              
+              </ngb-carousel>
+</app-main-slider>
+
+
+<!-- Our Services -->
+<section id="services" class="our-services">
+  <div class="container">
+    <div class="our-services__heading text-center">
+      <div><i class="fas fa-paw add-Green banner-icon mb-3"></i></div>
+
+      <h2>Our Services</h2>
+    </div>
+    <div class="container block-padding pt-0">
+      <div class="row">
+        <div class="col-xl-6">
+          <h3>The best for your pet!</h3>
+          <p class="text">
+            We provide everything you want for your pet.
+          </p>
+          <p class="text"><strong> If you want:</strong></p>
+          <ul class="custom pl-0">
+            <li><i class="fas fa-paw add-Green banner-icon mr-2"></i>Adopt a Pet</li>
+            <li><i class="fas fa-paw add-Green banner-icon mr-2"></i>Find your lost Pet</li>
+            
+          </ul>
+        </div>
+        <div class="col-xl-6">
+          <img src="../../../assets/images/services.jpg" alt="" data-aos="fade-down" data-aos-duration="1500"
+            class="img-fluid border-irregular1 border-double aos-init aos-animate" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+

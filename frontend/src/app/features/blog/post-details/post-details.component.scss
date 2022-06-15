@@ -1,0 +1,33 @@
+.banner-image {
+    background-image: url(../../../../assets/images/resources-slide.jpg);}
+    .tags{
+        a{
+            color: #94c13d;
+        }
+        .first{
+            color: black;
+            text-decoration-line: underline;
+        }
+    }
+    .social {
+        font-size: 1.2rem;}
+        textarea{
+            resize: none;
+            font-size: 1.4rem;
+            &:focus{
+                outline: none;
+            }
+        }
+        button:focus{
+  
+            outline: 0;
+        
+        }
+        .blog-path ul li,
+.blog-path ul a {
+  font-size: 1.6rem;
+  font-weight: 600;
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,266 @@
+
+  <head>
+        <style>
+          .my-pagination /deep/ .ngx-pagination li {
+            background-color: #eff0ec;
+            font-size: 1.2rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 0.2rem;
+          }
+      
+          .my-pagination /deep/ .ngx-pagination .current {
+            background: #94c13d;
+            font-size: 1.2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 1.1rem;
+            padding-bottom: 1.2rem;
+          }
+      
+          .my-pagination /deep/ .ngx-pagination .pagination-next,
+          .my-pagination /deep/ .ngx-pagination .pagination-previous {
+            background-color: #eff0ec;
+          }
+        </style>
+      </head>
+  <!-- banner image -->
+   <div class="container-fluid no-gutters">
+    <div class="row">
+        <div class="col-sm-12  banner-image">
+            <div class="row align-items-center banner-image__banner-content">
+                <div class="align-self-center title">
+                    <p class="paragraph-1">Post Details</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- gray-part -->
+    <div class="row">
+
+        <div class="col pt-3 pb-2 blog-path">
+            <div class="row">
+
+                <div class="col-sm-6 col-md-4  offset-1">
+                    <ul class="clearfix">
+                        <li><a [routerLink]="'/Home'"><span class="fa fa-home"></span> Home /
+                            </a></li>
+                            
+                        <li class="active new">Blog /Details</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- gray-part -->
+</div>
+<!-- banner image -->
+
+<!-- page-body -->
+<div class="container-fluid no-gutters">
+    <div class="row">
+
+        <!-- page-content -->
+        <div class="offset-1 col-8">
+
+            <!-- post -->
+            <div class="row mb-4">
+                <div class="post-container mt-5 col-12">
+                    <div class="row ">
+                        <div class="col-sm-12 col-lg-5 post-image">
+                            <div id="carouselExampleIndicators" class=" carousel slide" data-ride="carousel">
+                            
+                                <div class="carousel-inner">
+                                    <div  class="carousel-item active" >
+                                        <img [src]="Post.image" width="300" height="300" class="d-block w-100"
+                                            alt="...">
+                                    </div>
+                                    
+                                </div>
+                              
+                            </div>
+
+                        </div>
+                        <div class="col-sm-12 col-lg-7 post-paragrph align-items-center">
+                            <p class="text mt-2">
+                               {{Post.body}}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- post date-start -->
+            <div class="row mt-5">
+
+                <!-- date -->
+                <div class="ml-3 col-sm-2 col-lg-1" align="center">
+                    <div class="row">
+                        <div class="col-12 p-2"></div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-12 post-date">
+                            <p class="post-date__day">{{Post.day}} </p>
+                            <span class="post-date__month">{{Post.month}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- date -->
+
+                <!-- comments -->
+                <div class="ml-3 col-sm-9 ">
+                    <div class="row">
+                        <div class="col-12">
+                            <a class="post-title">{{Post.title}}</a>
+                        </div>
+                    </div>
+                    <div class="row mt-4 mb-3">
+                        <div class="col-auto">
+
+                            <span class="far fa-user"></span>
+                            <span class="ml-1 social">By: {{postUser.firstName}}</span>
+                        </div>
+                        <div class="col-auto">
+
+                            <span class="far fa-comment"></span>
+                            <span class="social"> Comment (  {{PostComments.length}} )</span>
+                        </div>
+                        <!-- <div class="col-auto">
+
+                            <span class="far fa-heart"></span>
+                            <span class="social"> 74</span>
+                        </div> -->
+                    </div>
+                    <div class="ml-1 mb-5 row mt-2">
+                        <div class="col-12">
+                            <div class="row line-small"></div>
+                            <div class="row line-medium mt-2"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- comments -->
+
+            </div>
+            <!-- post date-end -->
+            <!-- tags-start -->
+            <div class="row mb-5">
+                <div class="col-sm-12 col-lg-6 tags">
+                    <div class="row">
+                        <div class="col" *ngFor="let Tag of postTags ;let i = index">
+                            <a [class.first]="i===0" >{{Tag.name}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 offset-lg-1 col-lg-5 share">
+                    <div class="row ">
+                        <div class="col-auto">
+                            <p class="share-this"><u>share this</u></p>
+                        </div>
+                        <div class="col">
+                            <a ><i class="fab fa-twitter"></i> </a>
+                        </div>
+                        <div class="col">
+                            <a ><i class="fab fa-facebook"></i></a>
+                        </div>
+                        <div class="col">
+                            <a ><i class="fab fa-google-plus-g"></i></a>
+                        </div>
+                        <div class="col">
+                            <a ><i class="fab fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- tags-end -->
+            <!-- post sperator -->
+            <div class="row mt-5 mb-5">
+                <div class="col-12 sperator"></div>
+            </div>
+            <!-- post sperator -->
+            <!-- post -->
+
+            <!-- comments-start -->
+            <div *ngIf="PostComments.length>0" class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 comments">comments <span> ( {{PostComments.length}} )</span></div>
+                    </div>
+               
+                    <div class="row ml-1">
+                        <div class="col-12">
+                            <div class="mb-5 row mt-2">
+                                <div class="col-12">
+                                    <div class="row line-small"></div>
+                                    <div class="row line-medium mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- comment-section-start -->
+                   <app-comment-item *ngFor="let comment of PostComments| paginate: config" [comment]='comment'></app-comment-item>
+                    <!-- comment-section-end -->
+                  
+                </div>
+              
+            </div>
+            <div class="row mt-5">
+                    <div class="col-12" align="center">
+                   <pagination-controls *ngIf="PostComments.length>0" class="my-pagination" (pageChange)="pageChanged($event)"></pagination-controls>
+                  </div>
+                </div>
+            <div class="row">
+
+            </div>
+            <!-- comment sperator -->
+            <div class="row mt-5 mb-5" *ngIf="PostComments.length>0">
+                <div class="col-12 sperator"></div>
+            </div>
+            <!-- comment sperator -->
+            <!-- comments-end -->
+
+            <!-- post a comment-start -->
+            <div class="row" *ngIf="loginUser">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 comments">Post A comment</div>
+                    </div>
+
+                    <div class="row ml-1">
+                        <div class="col-12">
+                            <div class="mb-5 row mt-2">
+                                <div class="col-12">
+                                    <div class="row line-small"></div>
+                                    <div class="row line-medium mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="row" *ngIf="loginUser">
+                        <div class="col-12">
+                            <form [formGroup]="addCommentForm" (ngSubmit)="onSubmit()" >
+                                <div class="form-group">
+                                    <textarea [formControlName]="'comment'" name="comment" placeholder="Comment..."></textarea>
+                                </div>
+                           
+                                <div class="form-group">
+                                    <button class="theme-btn btn-style-one" type="submit"
+                                       name="submit-form">Submit</button> </div>
+                            </form>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <!-- post a comment-end -->
+
+        </div>
+
+
+    </div>
+    <!-- page-content -->
+
+</div>

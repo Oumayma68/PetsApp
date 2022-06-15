@@ -1,0 +1,310 @@
+<div class=" container form-container">
+  <form
+    [formGroup]="addAnimalForm"
+    (ngSubmit)="onSubmit(categorySelect)"
+    class="custom-form"
+    id="add-animal-form"
+  >
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-6">
+        <h1 class="form-title  m-auto">Add your Animal Information</h1>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <div class="row">
+      <div class=" col-sm-12">
+        <div class="form-controls ">
+          <div class="row ">
+            <div class="col-sm-12 col-md-6">
+              <div class="form-group  ">
+                <input
+                  [formControlName]="'petId'"
+                  class="form-control text-box"
+                  type="hidden"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-sm-12 col-md-6">
+              <div class="form-group  ">
+                <label class="lable" for="">Name*</label>
+                <input
+                  [formControlName]="'name'"
+                  class="form-control text-box"
+                  type="text"
+                />
+                <!--pet Name validation-->
+                <span
+                  class="error_msg"
+                  *ngIf="
+                    addAnimalForm.get('name').errors &&
+                    !addAnimalForm.get('name').valid &&
+                    (addAnimalForm.get('name').touched || isSubmitted)
+                  "
+                >
+                  Pet Name should be only letters and minimum length(3) And
+                  maximum length(10)
+                </span>
+              </div>
+            </div>
+            <div class=" col-sm-12 col-md-6">
+              <div class="form-group   ">
+                <label class="lable" for="">Age*</label>
+                <input
+                  [formControlName]="'age'"
+                  class=" form-control text-box"
+                  type="text"
+                />
+                <!--pet Age validation-->
+                <span
+                  class="error_msg"
+                  *ngIf="
+                    addAnimalForm.get('age').errors &&
+                    !addAnimalForm.get('age').valid &&
+                    (addAnimalForm.get('age').touched || isSubmitted)
+                  "
+                >
+                  Pet Age should be only numbers and max(30)
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div [formGroupName]="'category'" class="form-row ">
+            <div class="col-sm-12 col-md-6">
+              <div class="form-group ">
+                <label class="lable" for="">Type*</label>
+                <select
+                  #typeSelect
+                  [formControlName]="'fkTypeId'"
+                  class=" form-control custom-select mb-3 form-drop_down"
+                  name="type"
+                  id=""
+                  (change)="displayTypeCategories(typeSelect.value)"
+                  required
+                >
+                  <option *ngFor="let type of types" [value]="type.id">{{
+                    type.name
+                  }}</option>
+                </select>
+                <!--pet Type validation-->
+                <span
+                  class="error_msg"
+                  *ngIf="
+                    addAnimalForm.get('category').get('fkTypeId').errors &&
+                    !addAnimalForm.get('category').get('fkTypeId').valid &&
+                    (addAnimalForm.get('category').get('fkTypeId').touched ||
+                      isSubmitted)
+                  "
+                >
+                  you should select pet type
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-group">
+                <label class="lable" for=""
+                  >Category<span class="required">*</span></label
+                >
+                <select
+                  #categorySelect
+                  [formControlName]="'categoryId'"
+                  class=" form-control custom-select mb-3 form-drop_down"
+                  name="category_name"
+                  id=""
+                >
+                  <option
+                    *ngFor="let Category of selectedTypeCategories"
+                    [value]="Category.categoryId"
+                  >
+                    {{ Category.name }}</option
+                  >
+                </select>
+                <div>
+                  <span class="hint"
+                    >hint:you should select pet type first</span
+                  >
+                </div>
+                <!--pet category validation-->
+                <span
+                  class="error_msg"
+                  *ngIf="
+                    addAnimalForm.get('category').get('categoryId').errors &&
+                    !addAnimalForm.get('category').get('categoryId').valid &&
+                    (addAnimalForm.get('category').get('categoryId').touched ||
+                      isSubmitted)
+                  "
+                >
+                  you should select pet category
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-row ">
+            <div class="col-sm-12 col-md-6">
+              <label class="lable" for="">Parents Types & History</label>
+              <textarea
+                [formControlName]="'parentHistoryAndType'"
+                class="form-control"
+                name=""
+                id=""
+                cols="30"
+                rows="4"
+              ></textarea>
+              <!--pet Age validation-->
+              <span
+                class="error_msg"
+                *ngIf="
+                  addAnimalForm.get('parentHistoryAndType').errors &&
+                  !addAnimalForm.get('parentHistoryAndType').valid &&
+                  (addAnimalForm.get('parentHistoryAndType').touched ||
+                    isSubmitted)
+                "
+              >
+                you should enter animal's Parents Types & History
+              </span>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label class="lable" for="">Food</label>
+              <textarea
+                [formControlName]="'food'"
+                class="form-control"
+                name=""
+                id=""
+                cols="30"
+                rows="4"
+              ></textarea>
+              <span
+                class="error_msg"
+                *ngIf="
+                  addAnimalForm.get('food').errors &&
+                  !addAnimalForm.get('food').valid &&
+                  (addAnimalForm.get('food').touched || isSubmitted)
+                "
+              >
+                you should enter animal's Food
+              </span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-sm-12 col-md-6">
+              <fieldset class="form-group gender-field col">
+                <div class="col-form-label  pt-0">
+                  <label class="lable">Gender</label>
+                </div>
+                <div class="">
+                  <div class="form-check">
+                    <input
+                      formControlName="gender"
+                      class="form-check-input"
+                      type="radio"
+                      [value]="'male'"
+                    />
+                    <label class="form-check-label">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      formControlName="gender"
+                      class="form-check-input"
+                      type="radio"
+                      [value]="'female'"
+                    />
+                    <label class="form-check-label">
+                      Female
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <fieldset class="form-group gender-field col">
+                <div class="col-form-label  pt-0">
+                  <label class="lable">Is to adopted</label>
+                </div>
+                <div class="">
+                  <div class="form-check">
+                    <input
+                      [formControlName]="'isToAdapted'"
+                      class="form-check-input"
+                      type="radio"
+                      id="gridRadios1"
+                      [value]="true"
+                    />
+                    <label class="form-check-label">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      [formControlName]="'isToAdapted'"
+                      class="form-check-input"
+                      type="radio"
+                      id="gridRadios2"
+                      [value]="false"
+                    />
+                    <label class="form-check-label">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="form-group form-row ">
+            <div class="col-sm-12 col-md-6">
+              <label class="lable" for="">Medical Condition</label>
+              <textarea
+                [formControlName]="'medicalCondition'"
+                class="form-control"
+                cols="30"
+                rows="4"
+              ></textarea>
+              <span
+                class="error_msg"
+                *ngIf="
+                  addAnimalForm.get('medicalCondition').errors &&
+                  !addAnimalForm.get('medicalCondition').valid &&
+                  (addAnimalForm.get('medicalCondition').touched || isSubmitted)
+                "
+              >
+                you should enter animal's Medical Condition
+              </span>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label class="lable" for="">Notes</label>
+              <textarea
+                [formControlName]="'notes'"
+                class="form-control"
+                cols="30"
+                rows="4"
+              ></textarea>
+
+              <span
+                class="error_msg"
+                *ngIf="
+                  addAnimalForm.get('notes').errors &&
+                  !addAnimalForm.get('notes').valid &&
+                  (addAnimalForm.get('notes').touched || isSubmitted)
+                "
+              >
+                you should enter animal's Notes
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row justify-content-end ">
+          <div class="col-auto">
+            <button id="button--cancel" class=" btn btn--irregular  co-md-4">Cancel</button>
+          </div>
+          <button type="submit" class="btn btn--irregular">Save</button>
+          <div class="col-auto"></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
